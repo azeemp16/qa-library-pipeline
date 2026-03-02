@@ -8,7 +8,7 @@
 ![Last Commit](https://img.shields.io/github/last-commit/azeemp16/qa-library-pipeline)
 ![CI Pipeline Badge](https://github.com/azeemp16/qa-library-pipeline/actions/workflows/ci.yml/badge.svg)
 
-<mark>*Replace `YOUR_USERNAME/YOUR_REPO` with your details*</mark>
+<mark>*Replace `azeemp16/qa-library-pipeline` with your details*</mark>
 
 ## Project Overview
 [TODO: Describe the library's data quality problem]
