@@ -13,3 +13,8 @@ class TestOperation(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+def test_diff(self):
+        calculation = Calculator(9, 2)
+        self.assert (calculation.get_difference(), 6, "Answer is not 6")

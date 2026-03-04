@@ -1,5 +1,7 @@
 # %%
 import pandas as pd
+import unittest
+##pip install pandas 
 
 # %%
 import os
@@ -49,6 +51,9 @@ Customers.head(50)
 # %%
 Books.head(50)
 
+books_na_count = Books.isna().sum().sum()
+print("Total NA values in Books:", books_na_count)
+
 from datetime import datetime
 
 def calculate_days_on_loan(df, checkout_col="Book checkout", returned_col="Book Returned", dayfirst=True):
@@ -59,6 +64,16 @@ def calculate_days_on_loan(df, checkout_col="Book checkout", returned_col="Book 
     return (df[returned_col] - df[checkout_col]).dt.days.astype("Int64")
 Books["Days on loan"] = calculate_days_on_loan(Books)
 
-print(Books.head())
+class TestDaysOnLoan(unittest.TestCase):
+    def test_no_negative_days(self):
+        negatives = Books[Books["Days on loan"] < 0]
+        self.assertTrue(negatives.empty, f"Negative values found:\n{negatives}")
+
+if __name__ == "__main__":
+    unittest.main()
+
+
+
+
 
 
