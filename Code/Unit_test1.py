@@ -4,7 +4,7 @@ from Calculator import Calculator
 class TestOperation(unittest.TestCase):
     
     def test_sum(self):
-        calculation = Calculator(2, 2)
+        calculation = Calculator(3, 1)
         self.assertEqual(calculation.get_sum(), 4, "Answer is not 4")
 
     def test_diff(self):
