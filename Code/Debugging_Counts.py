@@ -65,29 +65,19 @@ invalid_count = len(invalid_returns)
 print("Number of records where Book Returned is before Book Checkout:", invalid_count)
 print(invalid_returns)
 
-import pyodbc
+import pandas as pd
 
-# List all ODBC drivers installed on the system
-drivers = [driver for driver in pyodbc.drivers()]
-print("ODBC Drivers available:")
-for driver in drivers:
-    print(driver)
-
-
-from sqlalchemy import create_engine
-
-# Define the connection string to your MS SQL Server
-server = 'localhost'  
-database = 'DE5_Module5'
-username = 'python_app'
-password = 'password'
-
-# Create the connection string with Windows Authentication
-connection_string = f'mssql+pyodbc://@{server}/{database}?trusted_connection=yes&driver=ODBC+Driver+17+for+SQL+Server'
+summary_df = pd.DataFrame({
+    "Metric": ["Rows cleaned in Books", "Invalid return records"],
+    "Value": [books_cleaned_count, invalid_count]
+})
 
 
-# Create the SQLAlchemy engine
-engine = create_engine(connection_string)
+summary_df.to_csv("library_cleaning_summary.csv", index=False)
 
-Customers.to_sql('customers_bronz', con=engine, if_exists='replace', index=False)
-Books.to_sql('books_bonz', con=engine, if_exists='replace', index=False)
+
+invalid_returns.to_csv("invalid_book_returns.csv", index=False)
+
+print("CSV files created:")
+print(" - library_cleaning_summary.csv")
+print(" - invalid_book_returns.csv")
